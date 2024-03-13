@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import lock from "../images/password.png";
+import copy from "../images/copy.svg";
+import tick from "../images/tick.svg";
 
 import Strength from "./Strength";
 
@@ -11,7 +12,7 @@ function Password() {
   const [copied, setCopied] = useState(false);
   const [tamilchar, setTamilchar] = useState(true);
 
-  const [password, setPassword] = useState("Password");
+  const [password, setPassword] = useState("PTx1f5DaFX");
   const [symbol, setSymbol] = useState(true);
 
   function generatePass() {
@@ -42,7 +43,7 @@ function Password() {
     setPassword(generatedPassword);
   }
   if (password.length <= 0) {
-    setPassword("enter valid number ");
+    setPassword("enter value greater than 0 ");
   }
 
   const copytoclipboard = () => {
@@ -51,99 +52,116 @@ function Password() {
   };
 
   return (
-    <div className="flex bg-slate-300 justify-center h-screen flex-col items-center">
-      <h1 className="text-3xl font-bold mb-2"></h1>
-      <div className=" relative bg-slate-400 flex flex-col justify-center items-center rounded-md sm:w-6/12 sm:h-4/5  h-4/5 p-5  ">
-        <h1 className="text-3xl font-bold mb-2 absolute top-0 md:top-3 lg:top-14">
-          Password Generator
-        </h1>
-        <div className="">
-          {" "}
-          <img className="h-20 mb-5" src={lock} alt="Lock" />
+    <div className="flex bg-black justify-center h-screen flex-col items-center font-JetBrains ">
+      <h1 className="text-xl text-slate-300 mb-2  top-0 md:top-3 lg:top-14 ">
+        Password Generator
+      </h1>{" "}
+      <div
+        className="bg-gray-600 flex  justify-center items-center px-3 p-2 
+       text-2xl w-96 mb-2 "
+      >
+        {/* Search bar */}
+        <div className=" ">
+          <input
+            className=" p-2 w-full text-white bg-gray-600
+            "
+            type="text"
+            value={password}
+            readOnly
+          />
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="Num"
-            className="block text-md font-medium text-gray-800"
-          >
-            Password Length:
-          </label>
-          <div className="flex items-center gap-3 justify-center ">
-            <button
-              className="   border border-solid border-blue-400 bg-blue-500 text-white rounded px-3 py-1  text-md font-bold   hover:bg-blue-600 "
-              onClick={() => setLength(Math.max(length - 1, 0))}
+        <div onClick={copytoclipboard} className="">
+          <img src={copied ? tick : copy} alt="copy" />
+        </div>
+      </div>
+      <div className="   bg-gray-600 flex flex-col justify-center items-center   p-3 w-96 ">
+        {/* Check boxes */}
+        <div className="mb-4 flex justify-between p-1 items-center w-full">
+          <div>
+            <label
+              htmlFor="Num"
+              className="block text-lg font-medium text-white"
             >
-              -
-            </button>
+              Character Length{" "}
+            </label>
+          </div>
+          <div>
             <input
-              className="border p-2 mr-2 w-16 text-center rounded-sm "
+              className="text-2xl font-bold p-2 mr-2 w-16 text-center rounded-sm text-green-300
+              bg-transparent "
               type="number"
               value={length}
               onClick={() => setLength(Math.max(0))}
               onChange={(e) => setLength(parseInt(e.target.value))}
             />
-
-            <button
-              className=" border border-solid border-blue-400 bg-blue-500 text-white rounded px-3 py-1  text-md font-bold   hover:bg-blue-600"
-              onClick={() => setLength(length + 1)}
-            >
-              +{" "}
-            </button>
-
-            <button
-              className="border-2 hover:bg-green-500 bg-green-700 text-white hover:text-white border-green-700 px-4 py-2 rounded"
-              onClick={generatePass}
-            >
-              Generate
-            </button>
           </div>
         </div>
-        <div className="w-72 flex  flex-col gap-2  ">
-          <div className="flex  text-sm font-medium text-gray-900 bg-gray-200 border border-gray-200 rounded-lg  py-3 px-2">
-            <input
-              id="numbercheckbox"
-              type="checkbox"
-              checked={number}
-              className="h-5 w-10"
-              onChange={(e) => setNumber(e.target.checked)}
-            />
-            <label htmlFor="numbercheckbox" className="w-full ml-2 font-bold">
-              Include Number
-            </label>
-          </div>
+        <div className=" flex items-center  gap-3 justify-center   w-full">
+          <input
+            className=" w-full accent-green-500   "
+            type="range"
+            value={length}
+            max={30}
+            min={1}
+            step={1}
+            onChange={(e) => setLength(e.target.value)}
+          />
+        </div>
 
-          <div className="flex  text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg  py-3 px-2">
+        <div className="w-72 flex text-slate-200  flex-col gap-2 mt-10 ">
+          <div className="flex  ">
             <input
-              className="h-5 w-10"
+              className="   h-5 w-5 accent-green-600 scale-125 "
               id="uppercaseCheckbox"
               type="checkbox"
               checked={upper}
               onChange={(e) => setUpper(e.target.checked)}
             />
-            <label
-              htmlFor="uppercaseCheckbox"
-              className="w-full ml-2 font-bold"
-            >
-              Include Uppercase
+            <label htmlFor="uppercaseCheckbox" className="w-full ml-2">
+              Include Uppercase Letters{" "}
             </label>
           </div>
 
-          <div className="flex  text-sm font-medium text-gray-900 bg-gray-200 border border-gray-200 rounded-lg  py-3 px-2">
+          <div className="flex">
             <input
-              className="h-5 w-10"
+              className="  h-5 w-5 accent-green-600 scale-125 "
               id="Lowercase"
               type="checkbox"
               checked={lower}
               onChange={(e) => setLower(e.target.checked)}
             />
             <label htmlFor="Lowercase" className="w-full ml-2 font-bold">
-              Include Lowercase
+              Include Lowercase Letters
+            </label>
+          </div>
+          <div className="flex">
+            <input
+              id="numbercheckbox"
+              type="checkbox"
+              checked={number}
+              className="  h-5 w-5 accent-green-600 scale-125 "
+              onChange={(e) => setNumber(e.target.checked)}
+            />
+            <label htmlFor="numbercheckbox" className="w-full ml-2 font-bold">
+              Include Numbers{" "}
             </label>
           </div>
 
-          <div className="flex  text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg  py-3 px-2">
+          <div className="flex">
             <input
-              className="h-5 w-10"
+              className="  h-5 w-5 accent-green-600 scale-125 "
+              id="symbol"
+              type="checkbox"
+              checked={symbol}
+              onChange={(e) => setSymbol(e.target.checked)}
+            />
+            <label htmlFor="symbol" className="w-full ml-2 font-bold">
+              Include Symbols{" "}
+            </label>
+          </div>
+          <div className="flex">
+            <input
+              className="  h-5 w-5 accent-green-600 scale-125 "
               id="TamilLetter"
               type="checkbox"
               checked={tamilchar}
@@ -153,39 +171,16 @@ function Password() {
               Include Tamil Letters
             </label>
           </div>
-
-          <div className="flex  text-sm font-medium text-gray-900 bg-gray-200 border border-gray-200 rounded-lg  py-3 px-2">
-            <input
-              className="h-5 w-10"
-              id="symbol"
-              type="checkbox"
-              checked={symbol}
-              onChange={(e) => setSymbol(e.target.checked)}
-            />
-            <label htmlFor="symbol" className="w-full ml-2 font-bold">
-              Include Symbol
-            </label>
-          </div>
-        </div>
-        <div className=" mt-4 flex">
-          <input
-            className="border rounded-bl-md rounded-tl-md p-2 w-full font-mono italic
-            "
-            type="text"
-            value={password}
-            readOnly
-          />
-          <button
-            className={`px-4 py-2 ${
-              copied ? "bg-green-500" : "bg-blue-500"
-            } text-white rounded`}
-            onClick={copytoclipboard}
-          >
-            {copied ? "Copied" : "Copy"}
-          </button>
         </div>
 
         <Strength password={password} />
+
+        <button
+          className="border-2 hover:bg-green-500 text-white hover:text-white border-green-700 px-4 py-2 rounded w-full mt-2"
+          onClick={generatePass}
+        >
+          Generate -{">"}
+        </button>
       </div>
     </div>
   );
