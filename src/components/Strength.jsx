@@ -36,8 +36,8 @@ function Strength({ password }) {
       </p>
 
       {password.length <= 5 && (
-        <div className="h-10 w-5 flex justify-center items-center  ">
-          <div className="h-5 w-5" style={indicatorStyle}></div>
+        <div className="h-10 w-8 flex justify-center items-center  ">
+          <div className="h-5 w-8" style={indicatorStyle}></div>
         </div>
       )}
       {password.length >= 6 && password.length <= 8 && (
