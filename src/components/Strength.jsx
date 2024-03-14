@@ -8,18 +8,18 @@ function Strength({ password }) {
   if (password.length <= 5) {
     strengthText = "WEAK";
     strengthColor = "red";
-    containerFill = "25%";
+    containerFill = "100%";
   } else if (password.length >= 6 && password.length <= 8) {
     strengthText = "MEDIUM";
     strengthColor = "yellow";
     containerFill = "100%";
   } else if (password.length >= 8 && password.length <= 15) {
     strengthText = "STRONG";
-    strengthColor = "green";
+    strengthColor = "lightgreen";
     containerFill = "100%";
   } else if (password.length > 15) {
     strengthText = "VERY STRONG";
-    strengthColor = "darkgreen";
+    strengthColor = "green";
     containerFill = "100%";
   }
 
@@ -36,26 +36,32 @@ function Strength({ password }) {
       </p>
 
       {password.length <= 5 && (
-        <div className="h-10 w-8 flex justify-center items-center  ">
-          <div className="h-5 w-8" style={indicatorStyle}></div>
+        <div className="h-10 w-10 flex justify-center gap-1 items-center  ">
+          <div className="h-5 w-5" style={indicatorStyle}></div>
+          <div className="h-5 w-6 border"></div>
+          <div className="h-5 w-6 border"></div>
+          <div className="h-5 w-6 border"></div>
         </div>
       )}
       {password.length >= 6 && password.length <= 8 && (
-        <div className="h-10 w-5 flex  gap-1 justify-center items-center  ">
+        <div className="h-10 w-10 flex  gap-1 justify-center items-center  ">
           <div className="h-5 w-5" style={indicatorStyle}></div>
           <div className="h-5 w-5" style={indicatorStyle}></div>
+          <div className="h-5 w-8 border"></div>
+          <div className="h-5 w-8 border"></div>
         </div>
       )}
 
       {password.length > 8 && password.length <= 15 && (
-        <div className="h-10 w-8 flex gap-1 justify-center items-center ">
+        <div className="h-10 w-10 flex gap-1 justify-center items-center ">
           <div className="w-6 h-5" style={indicatorStyle}></div>
           <div className="w-6 h-5" style={indicatorStyle}></div>
           <div className="w-6 h-5" style={indicatorStyle}></div>
+          <div className="h-5 w-9 border"></div>
         </div>
       )}
       {password.length > 15 && (
-        <div className="h-10 w-12 flex gap-1 justify-center items-center  ">
+        <div className="h-10 w-10 flex gap-1 justify-center items-center  ">
           <div className="w-6 h-5" style={indicatorStyle}></div>
           <div className="w-6 h-5" style={indicatorStyle}></div>
           <div className="w-6 h-5" style={indicatorStyle}></div>
