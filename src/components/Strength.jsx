@@ -13,7 +13,7 @@ function Strength({ password }) {
     strengthText = "MEDIUM";
     strengthColor = "yellow";
     containerFill = "100%";
-  } else if (password.length >= 8 && password.length <= 15) {
+  } else if (password.length > 8 && password.length <= 15) {
     strengthText = "STRONG";
     strengthColor = "lightgreen";
     containerFill = "100%";
